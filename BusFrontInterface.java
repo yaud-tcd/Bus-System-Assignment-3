@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class BusFrontInterface {
 	
@@ -20,7 +21,7 @@ public class BusFrontInterface {
 		
 		while(!quit)	
 		{
-			System.out.println("\nDo you wish to exit the Bus Managment System?\nType \"yes\" to exit the Bus Management System or type \"no\" to continue.");
+			System.out.println("\nDo you wish to exit the Bus Management System?\nType \"yes\" to exit the Bus Management System or type \"no\" to continue.");
 			String exitInput = initialInput.next();
 			if (exitInput.equalsIgnoreCase(yesOption))
 			{
@@ -28,63 +29,84 @@ public class BusFrontInterface {
 			}
 			else if (exitInput.equalsIgnoreCase(noOption))
 			{
-				System.out.println("\nPlease type:\n\"1\" to find the shortest path between two bus stops.\n\"2\" to serach for a bus stop.\n\"3\" to search for a trip with a given arrival time.");
-				if (initialInput.hasNextInt())
+				boolean choiceError = true;
+				while(choiceError)
 				{
-					int optionInput = initialInput.nextInt();
-					if (optionInput == shortestPathOption)
+					System.out.println("\nPlease type:\n\"1\" to find the shortest path between two bus stops.\n\"2\" to serach for a bus stop.\n\"3\" to search for a trip with a given arrival time.");
+					if (initialInput.hasNextInt())
 					{
-						boolean error = true;
-						int firstBusStop = 0;
-						int secondBusStop = 0;
-						System.out.println("Find shortest Path between two Bus Stops.");
-						while(error)
+						int optionInput = initialInput.nextInt();
+						if (optionInput == shortestPathOption)
 						{
-							System.out.print("Type the name of the 1st Bus Stop here: ");
-							if (shortestPathInput.hasNextInt())
+							boolean firstStopError = true;
+							boolean secondStopError = true;
+							int firstBusStop = 0;
+							int secondBusStop = 0;
+							System.out.println("Find shortest Path between two Bus Stops.\n");
+							while(firstStopError)
 							{
-								firstBusStop = shortestPathInput.nextInt();
-								System.out.print("\nType the name of the 2nd Bus Stop here: ");
-								secondBusStop = shortestPathInput.nextInt();
-								error = false;
+								System.out.print("Type the integer Stop ID of the Source Bus Stop here: ");
+								if (shortestPathInput.hasNextInt())
+								{
+									firstBusStop = shortestPathInput.nextInt();
+									while(secondStopError)
+									{
+										System.out.print("\nType the integer Stop ID of the Destination Bus Stop here: ");
+										if (shortestPathInput.hasNextInt())
+										{
+											secondBusStop = shortestPathInput.nextInt();
+											BusShortestPath sp = new BusShortestPath();
+											System.out.print(sp.outputToString(firstBusStop, secondBusStop));
+											secondStopError = false;
+											
+										}
+										else
+										{
+											System.out.println("Error! Please enter a valid integer value for the bus stop.");
+											shortestPathInput.next();
+										}
+									}
+									firstStopError = false;
+								}
+								else
+								{
+									System.out.println("Error! Please enter a valid integer value for the bus stop.");
+									shortestPathInput.next();
+								}
 							}
-							else
-							{
-								System.out.println("Error! Please enter a valid integer value for the bus stop.");
-								shortestPathInput.next();
-							}
+							choiceError = false;
 						}
-						BusShortestPath sp = new BusShortestPath("stop_times.txt", firstBusStop, secondBusStop);
-					}
-					else if (optionInput == busStopSearchOption)
-					{
-						System.out.println("Search for a Bus Stop by name.");
-						System.out.print("Please type the name or partial name of a stop here: ");
-						String busStopString = busStopSearchInput.next();
-						
-						//Output bus stop(s) here
-					
-					}
-					else if (optionInput == tripSearchOption)
-					{
-						System.out.println("Search for a trip by arrival time.");
-						System.out.print("Please type the arrival time of your trip here: ");
-						String arrivalTime = arrivalTimeInput.next();
-						
-						//Output Trips here
-						
+						else if (optionInput == busStopSearchOption)
+						{
+							System.out.println("Search for a Bus Stop by name.");
+							System.out.print("Please type the name or partial name of a stop here: ");
+							String busStopString = busStopSearchInput.next();
+							
+							//Output bus stop(s) here
+							
+							choiceError = false;
+						}
+						else if (optionInput == tripSearchOption)
+						{
+							System.out.println("Search for a trip by arrival time.");
+							System.out.print("Please type the arrival time of your trip here: ");
+							String arrivalTime = arrivalTimeInput.next();
+							
+							//Output Trips here
+							
+							choiceError = false;
+						}
+						else
+						{
+							System.out.println("Input is invalid. Please try again!");
+							//initialInput.next();
+						}	
 					}
 					else
 					{
-						System.out.print("Input is invalid. Please try again!");
+						System.out.println("Error! this input is invalid. Please type in a valid input.");
 						initialInput.next();
 					}
-					
-				}
-				else
-				{
-					System.out.println("Error! this input is invalid. Please type in a valid input.");
-					initialInput.next();
 				}
 			}
 			else
@@ -98,6 +120,5 @@ public class BusFrontInterface {
 		busStopSearchInput.close();
 		arrivalTimeInput.close();
 		
-		//BusSortSearchTrips stops = new BusSortSearchTrips("stop_times.txt");
 	}
 }
