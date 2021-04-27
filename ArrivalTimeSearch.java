@@ -172,12 +172,12 @@ public class ArrivalTimeSearch {
 			
 		}
 		
-		
+		/*
 		
 	
 	public static void main(String[] args) throws IOException {
 		
-		/*
+		
 
 		ArrayList<String> result = searchArrivalTime( " 5:00:00" );
 		
@@ -194,7 +194,10 @@ public class ArrivalTimeSearch {
 			
 		}
 		
-		*/
+		
 		
 	}
+	
+	*/
+	
 }
