@@ -154,11 +154,13 @@ public class BusShortestPath {
 		}	
 	}
 	
-	public void shortestPath(int sourceStopID, Graph busSystem)
+	public void shortestPath(int sourceStopID, int destinationStopID, Graph busSystem)
 	{	
 		int sourceStopIndex = binarySearch(arrayOfStopIDs, sourceStopID);
+		int destinationStopIndex = binarySearch(arrayOfStopIDs, destinationStopID);
 		
 		Stop sourceStop = arrayOfSortedStops.get(sourceStopIndex);
+		Stop destinationStop = arrayOfSortedStops.get(destinationStopIndex);
 		
 		sourceStop.setDistTo(0);
 		
@@ -182,6 +184,10 @@ public class BusShortestPath {
 				}
 			}
 			settledStops.add(currentStop);
+			if (currentStop == destinationStop)
+			{
+				break;
+			}
 		}
 	}
 	
@@ -238,7 +244,7 @@ public class BusShortestPath {
 		}
 		else
 		{	
-			shortestPath(sourceStopID, busSystem);
+			shortestPath(sourceStopID, destinationStopID, busSystem);
 
 			open = "\nShortest Path From " + arrayOfSortedStops.get(sourceStopIndex).getName() + " to " + arrayOfSortedStops.get(destinationStopIndex).getName() + ".\n";
 			output = "\nSource Stop:\nStop Name: " + arrayOfSortedStops.get(destinationStopIndex).getShortestPath().get(0).getName() + "\nStop ID: " + arrayOfSortedStops.get(destinationStopIndex).getShortestPath().get(0).getStopID() + "\nCost from Previous Stop: N/A" + "\nCost From Source: " + arrayOfSortedStops.get(destinationStopIndex).getShortestPath().get(0).getDistTo() + "\n";
@@ -246,7 +252,7 @@ public class BusShortestPath {
 			{	
 				output = output + "\nStop " + j + ":\nStop Name: " + arrayOfSortedStops.get(destinationStopIndex).getShortestPath().get(j).getName() + "\nStop ID: " + arrayOfSortedStops.get(destinationStopIndex).getShortestPath().get(j).getStopID() + "\nCost From Previous Stop: " + (arrayOfSortedStops.get(destinationStopIndex).getShortestPath().get(j).getDistTo() - arrayOfSortedStops.get(destinationStopIndex).getShortestPath().get(j-1).getDistTo()) + "\nCost From Source: " + arrayOfSortedStops.get(destinationStopIndex).getShortestPath().get(j).getDistTo() + "\n";
 			}
-			output = output + "\nDestination Stop:\nStop Name: " + arrayOfSortedStops.get(destinationStopIndex).getName() + "\nStop ID: " + arrayOfSortedStops.get(destinationStopIndex).getStopID() + "\nCost fomr Previous Stop: " + (arrayOfSortedStops.get(destinationStopIndex).getDistTo() - arrayOfSortedStops.get(destinationStopIndex).getShortestPath().get(arrayOfSortedStops.get(destinationStopIndex).getShortestPath().size() - 1).getDistTo()) +"\nCost From Source: " + arrayOfSortedStops.get(destinationStopIndex).getDistTo() + "\n";
+			output = output + "\nDestination Stop:\nStop Name: " + arrayOfSortedStops.get(destinationStopIndex).getName() + "\nStop ID: " + arrayOfSortedStops.get(destinationStopIndex).getStopID() + "\nCost from Previous Stop: " + (arrayOfSortedStops.get(destinationStopIndex).getDistTo() - arrayOfSortedStops.get(destinationStopIndex).getShortestPath().get(arrayOfSortedStops.get(destinationStopIndex).getShortestPath().size() - 1).getDistTo()) +"\nCost From Source: " + arrayOfSortedStops.get(destinationStopIndex).getDistTo() + "\n";
 			end = "\nTotal Cost from Source to Destination: " + arrayOfSortedStops.get(destinationStopIndex).getDistTo() + "\n";
 		}
 		return open + output + end;

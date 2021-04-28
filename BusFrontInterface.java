@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.IOException;
 
 public class BusFrontInterface {
 	
@@ -9,7 +10,7 @@ public class BusFrontInterface {
 	public static final String yesOption = "yes";
 	public static final String noOption = "no";
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		Scanner initialInput = new Scanner(System.in);
 		Scanner shortestPathInput = new Scanner(System.in);
@@ -36,7 +37,7 @@ public class BusFrontInterface {
 					if (initialInput.hasNextInt())
 					{
 						int optionInput = initialInput.nextInt();
-						if (optionInput == shortestPathOption)
+						if (optionInput == shortestPathOption)  //If user chooses shortest path option
 						{
 							boolean firstStopError = true;
 							boolean secondStopError = true;
@@ -76,23 +77,26 @@ public class BusFrontInterface {
 							}
 							choiceError = false;
 						}
-						else if (optionInput == busStopSearchOption)
+						else if (optionInput == busStopSearchOption) //If user chooses stop search option
 						{
 							System.out.println("Search for a Bus Stop by name.");
 							System.out.print("Please type the name or partial name of a stop here: ");
 							String busStopString = busStopSearchInput.next();
 							
+							
+							
 							//Output bus stop(s) here
 							
 							choiceError = false;
 						}
-						else if (optionInput == tripSearchOption)
+						else if (optionInput == tripSearchOption) //If user chooses trip search option
 						{
 							System.out.println("Search for a trip by arrival time.");
 							System.out.print("Please type the arrival time of your trip here: ");
 							String arrivalTime = arrivalTimeInput.next();
 							
-							//Output Trips here
+							ArrivalTimeSearch ats = new ArrivalTimeSearch();
+							System.out.print(ats.outputToString(arrivalTime));
 							
 							choiceError = false;
 						}
