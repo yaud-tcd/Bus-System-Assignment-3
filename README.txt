@@ -13,4 +13,4 @@ Oscar Whelan - 17331354
 Contributions:
 
 David Yau: Shortest Path Implementation
-Garbhan MacCormack: Arrival Time Search
+Garbhan MacCormack: Arrival Time Search Implementation
