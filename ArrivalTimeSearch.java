@@ -147,12 +147,12 @@ public class ArrivalTimeSearch {
 		{
 			e.printStackTrace();
 		}
-		sort(detailsOfBuses);
+		Collections.sort(detailsOfBuses);
 		return detailsOfBuses;	
 	}
 
 	
-	public void sort(ArrayList <String> array)
+	/*public void sort(ArrayList <String> array)
 	{
 		//test for an empty array
 		if(array.size() == 0)
@@ -198,7 +198,7 @@ public class ArrivalTimeSearch {
 				}
 			}
 		}
-	}
+	}*/
 	
 	
 	public int binarySearch(ArrayList<Integer> arrayOfStopIDs, int stopID)
