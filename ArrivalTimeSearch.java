@@ -120,12 +120,10 @@ public class ArrivalTimeSearch {
 			    {
 			    	line = null;	
 			    }
-			    
 			    else if(mm > 59 || mm < 0)
 			    {
 			    	line = null;
 			    }
-			    
 			    else if(ss > 59 || ss < 0)
 			    {
 			    	line = null;
@@ -174,7 +172,7 @@ public class ArrivalTimeSearch {
 		int [] busIDs = new int[array.size() -1];
 			
 		//add ID numbers to the ID numbers array
-		for( int j = 0 ; j < busesToSort.length ; j++)
+		for(int j = 0 ; j < busesToSort.length ; j++)
 		{	
 			String [] busSplit = busesToSort[j].split(",");	
 			int busID = Integer.parseInt(busSplit[0]);
@@ -235,7 +233,7 @@ public class ArrivalTimeSearch {
 		
 		if (result.isEmpty())
 		{
-			output = "Error! No stops have this arrival time.";
+			output = "\nError! No stops have this arrival time.\n";
 			return output;
 		}
 		else

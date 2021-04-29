@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
  
 class TSTNode
@@ -35,18 +34,27 @@ class TST
     public TSTNode insert(TSTNode r, char[] word, int ptr)
     {
         if (r == null)
-            r = new TSTNode(word[ptr]);
- 
+        {
+        	 r = new TSTNode(word[ptr]);
+        }
         if (word[ptr] < r.data)
-            r.left = insert(r.left, word, ptr);
+        {
+        	r.left = insert(r.left, word, ptr);
+        }   
         else if (word[ptr] > r.data)
-            r.right = insert(r.right, word, ptr);
+        {
+        	r.right = insert(r.right, word, ptr);
+        }    
         else
         {
             if (ptr + 1 < word.length)
-                r.middle = insert(r.middle, word, ptr + 1);
+            {
+            	r.middle = insert(r.middle, word, ptr + 1);
+            }   
             else
-                r.isEnd = true;
+            {
+            	r.isEnd = true;
+            }     
         }
         return r;
     }
@@ -56,27 +64,45 @@ class TST
         if (r != null)
         {
             traverse(r.left, str);
- 
             str = str + r.data;
             if (r.isEnd)
-                al.add(str);
- 
+            {
+            	al.add(str);
+            }
             traverse(r.middle, str);
-            str = str.substring(0, str.length() - 1);
- 
+            str = str.substring(0, str.length() - 1); 
             traverse(r.right, str);
         }
     }
     
-    public String searchForStop(String user) {
-    al = new ArrayList<String>();
-    traverse(root, "");
-    String Stops = "";
-    for (String element : al){
-        if (element.contains(user)){
-            Stops = Stops + "\n" + element;
+    public String searchForStop(String user, ArrayList<Stop> arrayOfStops) 
+    {
+        al = new ArrayList<String>();
+        traverse(root, "");
+        Stop stop = null;
+        String output = "";
+        for (String element : al)
+        {
+            if (element.contains(user))
+            {
+            	for (int i = 0; i < arrayOfStops.size(); i++)
+    	    	{
+    	    		if (element.equals(arrayOfStops.get(i).getName().toUpperCase()))
+    	    		{
+    	    			stop = arrayOfStops.get(i);
+    	    			break;
+    	    		}
+    	    	}
+            	if (stop != null)
+            	{
+            		output = output + "\nStop Name: " + element + "\nStop ID: " + stop.getStopID() + "\n";
+            	}
+            }
         }
+        if(output.equals(""))
+        {
+        	output = "\nNo stops found with this term.\n";
+        }
+	    return output;
     }
-	return Stops;
-}
 }

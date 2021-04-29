@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.io.IOException;
 
 public class BusFrontInterface {
@@ -83,9 +82,8 @@ public class BusFrontInterface {
 							System.out.print("Please type the name or partial name of a stop here: ");
 							String busStopString = busStopSearchInput.next();
 							
-							
-							
-							//Output bus stop(s) here
+							BusStopSearch bss = new BusStopSearch();
+							System.out.print(bss.outputToString(busStopString));
 							
 							choiceError = false;
 						}
