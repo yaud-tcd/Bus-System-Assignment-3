@@ -242,6 +242,11 @@ public class BusShortestPath {
 			output = "\nError! The Destination Stop ID (" + destinationStopID + ") is invalid. Please try again.\n";
 			return output;
 		}
+		else if(destinationStopIndex == sourceStopIndex)
+		{
+			output = "\nError! The Source Stop ID and the Destination Stop ID are the same. Please try again.\n";
+			return output;
+		}
 		else
 		{	
 			shortestPath(sourceStopID, destinationStopID, busSystem);

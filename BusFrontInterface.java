@@ -32,7 +32,7 @@ public class BusFrontInterface {
 				boolean choiceError = true;
 				while(choiceError)
 				{
-					System.out.println("\nPlease type:\n\"1\" to find the shortest path between two bus stops.\n\"2\" to serach for a bus stop.\n\"3\" to search for a trip with a given arrival time.");
+					System.out.println("\nPlease type:\n\"1\" to find the shortest path between two bus stops.\n\"2\" to search for a bus stop.\n\"3\" to search for a trip with a given arrival time.");
 					if (initialInput.hasNextInt())
 					{
 						int optionInput = initialInput.nextInt();

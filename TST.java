@@ -95,7 +95,7 @@ class TST
     	    	}
             	if (stop != null)
             	{
-            		output = output + "\nStop Name: " + element + "\nStop ID: " + stop.getStopID() + "\n";
+            		output = output + "\nStop Name: " + element + "\nStop ID: " + stop.getStopID() + "\nTrip IDs: " + stop.outputTripIDs() + "\n";
             	}
             }
         }

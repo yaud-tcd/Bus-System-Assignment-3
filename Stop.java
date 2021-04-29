@@ -10,6 +10,8 @@ public class Stop {
 	private ArrayList<Stop> shortestPath = new ArrayList<>();
 	private int distTo = Integer.MAX_VALUE;
 	
+	private ArrayList<Integer> tripIDs = new ArrayList<Integer>();
+	
 	Map<Stop, Integer> adjacentStops = new HashMap<>();
 	
 	public void setName(String name)
@@ -60,5 +62,20 @@ public class Stop {
 	public Map<Stop, Integer> getAdjacentStops()
 	{
 		return adjacentStops;
+	}
+	
+	public void addTripID(int tripID)
+	{
+		this.tripIDs.add(tripID);
+	}
+	
+	public String outputTripIDs()
+	{
+		String output = tripIDs.get(0).toString();
+		for (int i = 1; i < tripIDs.size(); i++)
+		{
+			output = output + ", " + tripIDs.get(i).toString();
+		}
+		return output;
 	}
 }
