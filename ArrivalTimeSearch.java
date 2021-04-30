@@ -152,55 +152,6 @@ public class ArrivalTimeSearch {
 	}
 
 	
-	/*public void sort(ArrayList <String> array)
-	{
-		//test for an empty array
-		if(array.size() == 0)
-		{
-			return;
-		}
-			
-		//convert from array list to array
-		String [] busesToSort = new String[array.size() - 1] ;
-			
-		for(int i = 0 ; i < array.size() - 1 ; i++)
-		{		
-			busesToSort[i] = array.get(i);
-		}
-			
-		//create array for bus ID numbers
-		int [] busIDs = new int[array.size() -1];
-			
-		//add ID numbers to the ID numbers array
-		for(int j = 0 ; j < busesToSort.length ; j++)
-		{	
-			String [] busSplit = busesToSort[j].split(",");	
-			int busID = Integer.parseInt(busSplit[0]);
-			busIDs[j] = busID;		
-		}
-		int temp;
-		String temp2;
-	
-		//sorting ID numbers in ascending order and sorting the array of relevant buses accordingly
-		for(int i = 0 ; i < busIDs.length ; i++)
-		{
-			for(int j = i ; j > 0 ; j--) 
-			{
-				if(busIDs[j] < busIDs[j-1])
-				{
-					temp = busIDs[j];
-					busIDs[j] = busIDs[j-1];
-					busIDs[j-1] = temp;
-	
-					temp2 = array.get(j);
-					array.set(j, array.get(j-1));
-					array.set(j-1, temp2);		
-				}
-			}
-		}
-	}*/
-	
-	
 	public int binarySearch(ArrayList<Integer> arrayOfStopIDs, int stopID)
 	{
 		int lo = 0, hi = arrayOfStopIDs.size()-1;
@@ -239,7 +190,7 @@ public class ArrivalTimeSearch {
 		else
 		{
 			output = "";
-			open = "Bus Stops Search given the following Arrival Time: " + arrivalTime;
+			open = "\nBus Stops Search given the following Arrival Time: " + arrivalTime + "\n";
 			for(int i = 0; i < result.size(); i++)
 			{
 				String[] lineElements = result.get(i).split(",");

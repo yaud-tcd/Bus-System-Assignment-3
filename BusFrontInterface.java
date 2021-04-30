@@ -101,7 +101,6 @@ public class BusFrontInterface {
 						else
 						{
 							System.out.println("Input is invalid. Please try again!");
-							//initialInput.next();
 						}	
 					}
 					else
@@ -120,7 +119,6 @@ public class BusFrontInterface {
 		initialInput.close();
 		shortestPathInput.close();
 		busStopSearchInput.close();
-		arrivalTimeInput.close();
-		
+		arrivalTimeInput.close();	
 	}
 }
